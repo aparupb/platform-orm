@@ -1,0 +1,38 @@
+intTest.enabled = false
+dist.enabled = false
+startServices.enabled = false
+stopServices.enabled = false
+
+repositories {
+    mavenCentral()
+
+    maven {
+        credentials {
+            username "${artifactory_user}"
+            password "${artifactory_password}"
+        }
+        url "${artifactory_contextUrl}/sp_quantum_snapshots"
+    }
+}
+
+//All Core ORM related dependencies should stay here.
+//We shouldn't be adding these individually in other repos and projects
+//TODO Externalize the version of these into gradle.properties
+dependencies {
+    compile group: 'com.google.inject', name: 'guice', version: '4.1.0'
+    compile group: 'com.google.code.guice-repository', name: 'guice-repository-stockpile',version: '2.1.1-SNAPSHOT'
+    compile group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
+    compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '4.1.10.Final'
+    compile 'org.hibernate:hibernate-validator:5.2.4.Final'
+    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.3.0.RELEASE'
+    compile group: 'com.google.inject.extensions', name: 'guice-assistedinject', version: '4.1.0'
+    compile group: 'com.stockpile.quantum', name: 'core-sdk', version: '1.0.0-SNAPSHOT'
+    testCompile(group: 'com.stockpile.quantum', name: 'quantum-server', version: '1.0.0-SNAPSHOT')
+    testCompile(group: 'com.stockpile.quantum', name: 'quantum-server', version: '1.0.0-SNAPSHOT', classifier: 'tests')
+    testCompile group: 'com.stockpile.quantum', name: 'http-sdk', version: '1.0.0-SNAPSHOT'
+    //This shouldn't be needed and should be pulled in by the quantum-server
+    //TODO figure out why this is needed
+    testCompile group: 'me.grison', name: 'jtoml', version: '1.0.0'
+}

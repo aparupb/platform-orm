@@ -1,0 +1,3 @@
+rootProject.name = 'platform-orm'
+include 'platform-orm'
+project(':platform-orm').projectDir = "$rootDir/sdk" as File

@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Unit Tests for Platform ORM SDK">
+    <test name="Unit Tests for Platform ORM">
+        <packages>
+            <package name="com.stockpile.platform.orm.tests"/>
+        </packages>
+    </test>
+</suite>
